@@ -120,13 +120,3 @@ This frontend communicates with the following backend endpoints:
 | DELETE | `/tasks/:id`                          | Delete a task                 |
 
 > All URLs are resolved against `NEXT_PUBLIC_API_BASE_URL`.
-
----
-
-## 🧪 Testing
-
-No automated tests are included in this frontend, but you can manually verify:
-
-1. **Add** a task → verify it appears in the list.  
-2. **Change** status → verify the new status persists.  
-3. **Delete** a task → verify it’s removed from the UI.
