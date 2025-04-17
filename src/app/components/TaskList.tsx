@@ -7,24 +7,24 @@ import { Task } from "../../../types/task";
 import { getTasks } from "../services/api";
 
 interface Props {
-  refreshFlag: boolean;
-  onRefreshed: () => void;
-}
+    refreshFlag: boolean;
+    onTaskUpdated: () => void;
+  }
 
-export default function TaskList({ refreshFlag, onRefreshed }: Props) {
+export default function TaskList({ refreshFlag, onTaskUpdated }: Props) {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchTasks = async () => {
+      setLoading(true);
       const data = await getTasks();
       setTasks(data);
       setLoading(false);
-      onRefreshed();
     };
 
     fetchTasks();
-  }, [refreshFlag, onRefreshed]);
+  }, [refreshFlag]);
 
   if (loading) return <p className="p-4">Loading tasks...</p>;
 
@@ -34,7 +34,7 @@ export default function TaskList({ refreshFlag, onRefreshed }: Props) {
         <p className="text-gray-500">No tasks yet.</p>
       ) : (
         tasks.map((task) => (
-          <TaskItem key={task.id} task={task} onTaskUpdated={onRefreshed} />
+          <TaskItem key={task.id} task={task} onTaskUpdated={onTaskUpdated} />
         ))
       )}
     </div>
