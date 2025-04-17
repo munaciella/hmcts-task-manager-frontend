@@ -9,15 +9,15 @@ interface Props {
 }
 
 export default function TaskItem({ task, onTaskUpdated }: Props) {
-  const handleStatusChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
-    await updateTaskStatus(task.id, e.target.value as Task["status"]);
-    onTaskUpdated();
-  };
-
-  const handleDelete = async () => {
-    await deleteTask(task.id);
-    onTaskUpdated();
-  };
+    const handleStatusChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+        await updateTaskStatus(task.id, e.target.value as Task["status"]);
+        onTaskUpdated();
+      };
+      
+      const handleDelete = async () => {
+        await deleteTask(task.id);
+        onTaskUpdated();
+      };      
 
   return (
     <div className="border p-4 rounded flex justify-between items-center bg-gray-50">
